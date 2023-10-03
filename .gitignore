@@ -1,1 +1,2 @@
-.backend/blogenv/
+backend/blogenv/
+__pycache__/
