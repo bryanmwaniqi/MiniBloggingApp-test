@@ -1,5 +1,30 @@
-from .. import app
+from flask_restful import Resource
 
-@app.route("/")
-def index():
-    return "hello world"
+class UserRegistration(Resource):
+    def post(self):
+        pass
+
+class UserLogin(Resource):
+    def post(self):
+        pass
+
+class Logout(Resource):
+    def get(self):
+        pass
+
+class Blog(Resource):
+    def get(self, id):
+        pass
+
+    def Post(self):
+        pass
+
+    def put(self, id):
+        pass
+
+    def delete(self, id):
+        pass
+
+class Blogposts(Resource):
+    def get(self):
+        pass
