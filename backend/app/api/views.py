@@ -25,6 +25,6 @@ class Blog(Resource):
     def delete(self, id):
         pass
 
-class Blogposts(Resource):
+class BlogPosts(Resource):
     def get(self):
         pass
