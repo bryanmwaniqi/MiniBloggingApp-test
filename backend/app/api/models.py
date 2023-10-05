@@ -10,8 +10,8 @@ class Blog(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(), nullable=False)
     content = db.Column(db.Text, nullable=False)
-    created_at = db.Column(db.Datetime, nullable=False, default=datetime.utcnow)
-    author_id = db.column(db.Integer, db.ForeignKey('author.id'), nullable=False)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    author_id = db.column(db.Integer, db.ForeignKey('author.id'))
 
 class Author(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -23,9 +23,9 @@ class Author(db.Model):
 
 class BlogSchema(Schema):
     #fields to be validated
-    title = fields.str(required=True)
-    content = fields.str(required=True)
-    created_at = fields.Datetime(required=True, dump_only=True)
+    title = fields.Str(required=True)
+    content = fields.Str(required=True)
+    created_at = fields.DateTime(required=True, dump_only=True)
     author_id = fields.Integer()
 
     @validates("title")
@@ -40,7 +40,7 @@ class BlogSchema(Schema):
 
 class AuthorSchema(Schema):
     #fields to be validated
-    username = fields.str(required=True)
+    username = fields.Str(required=True)
     password = fields.Integer(required=True, load_only=True)
     posts = fields.Nested('BlogSchema', exclude=('author_id',), many=True)
 
