@@ -2,3 +2,5 @@ blogenv/
 __pycache__/
 instance/
 .env
+openapi.yaml
+.git/
