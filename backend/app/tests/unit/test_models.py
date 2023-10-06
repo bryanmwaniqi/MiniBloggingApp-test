@@ -1,4 +1,5 @@
 import pytest
+from flask import current_app
 from app.api.models import AuthorSchema, BlogSchema
 from marshmallow import ValidationError
 
@@ -20,3 +21,7 @@ def test_new_blog(client):
     test_blog_schema = BlogSchema()
     with pytest.raises(ValidationError):
         test_blog = test_blog_schema.load(new_blog)
+
+def test_app_client(client):
+    assert client
+    assert current_app.config["TESTING"] == True

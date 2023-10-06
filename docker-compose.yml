@@ -2,6 +2,7 @@ services:
   db:
     image: postgres
     environment:
+      POSTGRES_USER: miniblogger
       POSTGRES_PASSWORD: miniblogpwd
       POSTGRES_DB: miniblog
     volumes:
@@ -10,6 +11,8 @@ services:
     image: bryanney/minibloggingapp:0.0.1
     build: ./backend
     container_name: api
+    env_file:
+      - .env.dev
     ports:
       - "5000:5000"
     depends_on:

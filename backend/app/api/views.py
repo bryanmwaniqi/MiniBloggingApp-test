@@ -1,4 +1,4 @@
-from flask import jsonify, request
+from flask import jsonify, request, current_app
 from flask_restful import Resource, abort
 from marshmallow import ValidationError
 from .models import (db, BlogPost, Author, BlogSchema, AuthorSchema)
@@ -116,4 +116,7 @@ class BlogPosts(Resource):
             abort(400, message=err.messages)
         output = blog_schema.dump(new_posts)
         return output, 201
+    
+
+
 
