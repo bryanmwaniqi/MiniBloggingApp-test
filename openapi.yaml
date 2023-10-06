@@ -1,0 +1,220 @@
+openapi: 3.0.3
+info:
+  title: Mini Blogging App - OpenAPI 3.0
+  description: A minimalistic blogging application API
+  contact:
+    email: bryanmwaniqi@gmail.com
+  version: 1.0.0
+
+servers:
+  - url: http://127.0.0.1:5000
+  
+components:
+  securitySchemes:
+    bearerAuth:            
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+paths:
+  /register:
+    description: User Registration Resource
+    post:
+      description: User registration operation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: 
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: "kinyua"
+                password:
+                  type: string
+                  example: "kinyua-1923"
+      responses:
+        '201':
+          description: created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: User Account Kinyua created successfully
+      
+  /login:
+    description: User Authentication Resource
+    post:
+      description: User login operation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: 
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: "yusuf"
+                password:
+                  type: string
+                  example: "5634yusef-1923"
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: logged-in
+                  token:
+                    type: string
+                    example: arandomstringhvcyscjcgygcschvsdhcscjs
+  
+  /logout:
+    description: User session termination Resource
+    get:
+      description: User registration operation
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: logged out successfully
+                  
+  
+  /blog/{id}:
+    description: Blog post altering Resource
+    get:
+      description: Specific Blogpost fetch operation
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: The blog ID
+      responses:
+          '200':
+            description: ok
+    put:
+      description: Specific Blogpost Update operation
+      security:
+        - bearerAuth: []
+      parameters:
+          - in: path
+            name: id
+            required: true
+            schema:
+              type: integer
+              minimum: 1
+            description: The blog ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: 
+              type: object
+              properties:
+                content:
+                  type: string
+                  example: an update to some blog content
+      responses:
+            '200':
+              description: ok
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      title:
+                        type: string
+                        example: The blog title
+                      content:
+                        type: string
+                        example: an update to some blog post
+    delete:
+      description: Specific Blogpost Delete operation
+      security:
+        - bearerAuth: []
+      parameters:
+          - in: path
+            name: id
+            required: true
+            schema:
+              type: integer
+              minimum: 1
+            description: The blog ID
+      responses:
+            '200':
+              description: ok
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        example: blog post deleted successfully
+  
+  /blogposts:
+    description: Blog addition and access Resource
+    get:
+      description: Blogposts fetch operation
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    content:
+                      type: string
+                      example: Some blog content
+                    author_id:
+                      type: integer
+                      example: 4
+                    created_at:
+                      type: string
+                      example: 2023-10-06T09:53:20.271904
+                    title:
+                      type: string
+                      example: Some blog title
+    post:
+      description: Blogposts creation operation
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: 
+              type: array
+              items:
+                properties:
+                  title:
+                    type: string
+                    example: "A blog title"
+                  content:
+                    type: string
+                    example: "Some blog content"
+      responses:
+        '200':
+          description: ok
+    
