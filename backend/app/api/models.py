@@ -1,13 +1,13 @@
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 from marshmallow import Schema, fields, ValidationError, post_load, validate, validates_schema
-from flask_jwt_extended import current_user
+from flask_jwt_extended import current_user, jwt_required
 
 db = SQLAlchemy()
 
 # SQLAlchemy model classes
 
-class Blog(db.Model):
+class BlogPost(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title = db.Column(db.String(), nullable=False)
     content = db.Column(db.Text, nullable=False)
@@ -21,7 +21,7 @@ class Author(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.String(), nullable=False)
     password = db.Column(db.String(50), nullable=False)
-    posts = db.relationship('Blog', backref='author')
+    posts = db.relationship('BlogPost', backref='author')
 
     def __repr__(self):
         return "User, {} created successfully".format(self.username)
@@ -36,18 +36,18 @@ class BlogSchema(Schema):
     author_id = fields.Integer()
 
     class Meta:
-        model = Blog
+        model = BlogPost
 
     @validates_schema
     def validate_blogpost(self, data, **kwargs):
-        blogpost = Blog.query.filter_by(title=data['title']).first()
+        blogpost = BlogPost.query.filter_by(title=data['title']).first()
         if blogpost:
             raise ValidationError('Blogpost with such title already exists')
-        
+   
     @post_load
     def make_blogpost(self, data, **kwargs):
         data["author_id"] = current_user.id
-        post = Blog(**data)
+        post = BlogPost(**data)
         db.session.add(post)
         db.session.commit()
         return post
