@@ -10,6 +10,12 @@ Before you get started, there are several things you need to get hold of before 
 
 Make sure to checkout the API documentation YAML file in the root folder of this repo.
 
+**Features**
+
+Containerized with docker
+Tests implementation
+Token based authentication
+
 Here is a list of the endpoints:
 
 ```
