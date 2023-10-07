@@ -12,9 +12,9 @@ Make sure to checkout the API documentation YAML file in the root folder of this
 
 **Features**
 
-Containerized with docker
-Tests implementation
-Token based authentication
+- Containerized with docker
+- Tests implementation
+- Token based authentication
 
 Here is a list of the endpoints:
 
