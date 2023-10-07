@@ -7,4 +7,4 @@ import json
 # def test_blog(client):
 #     resp = client.get('/api/blogposts')
 #     assert resp.status_code == 200, 'The response status code should be 200'
-    # assert json.loads(resp.data) == []
+#     assert json.loads(resp.data) == []
