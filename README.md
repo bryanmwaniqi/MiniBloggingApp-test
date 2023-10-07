@@ -39,3 +39,14 @@ To run just the flask app without containerization, navigate to the backend dire
 docker compose up
 
 ```
+
+## Running Tests
+
+To run tests using pytest, run the app in detached mode then open an interactive terminal in the flask api container and run pytest
+
+```
+docker compose up -d
+
+docker exec -it $containerid pytest
+
+```
