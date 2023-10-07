@@ -15,7 +15,7 @@ services:
       POSTGRES_PASSWORD: miniblogg
       POSTGRES_DB: blogdb
   api:
-    image: bryanney/minibloggingapp:0.0.1
+    image: bryanney/minibloggingapp:1.0.0
     build: ./backend
     container_name: api
     depends_on:

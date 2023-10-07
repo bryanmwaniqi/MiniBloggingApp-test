@@ -12,9 +12,9 @@ Make sure to checkout the API documentation YAML file in the root folder of this
 
 **Features**
 
-Containerized with docker
-Tests implementation
-Token based authentication
+- Containerized with docker
+- Tests implementation
+- Token based authentication
 
 Here is a list of the endpoints:
 
@@ -37,5 +37,16 @@ To run just the flask app without containerization, navigate to the backend dire
 
 ```
 docker compose up
+
+```
+
+## Running Tests
+
+To run tests using pytest, run the app in detached mode then open an interactive terminal in the flask api container and run pytest
+
+```
+docker compose up -d
+
+docker exec -it $containerid pytest
 
 ```
