@@ -66,7 +66,7 @@ class Blog(Resource):
         blog = BlogPost.query.filter_by(id=blog_id).first_or_404(description="No blog post with id as {}".format(blog_id))
         blog_schema = BlogSchema()
         resp = blog_schema.dump(blog)
-        return resp
+        return resp, 200
 
     @jwt_required()
     def put(self, blog_id):
