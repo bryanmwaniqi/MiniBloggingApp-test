@@ -60,7 +60,7 @@ docker compose up
 To run tests using pytest, run the app in detached mode then open an interactive terminal in the flask api container and run pytest
 
 ```
-docker compose up --build -d
+docker compose -f docker-compose.test.yml up --build -d
 
 docker exec -it $FlaskApiContainername/ID pytest
 
