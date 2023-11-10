@@ -6,7 +6,7 @@ A dockerized mini blogging flask api application that allows you to create,acces
 
 ## Documentation
 
-Before you get started, there are several things you need to get hold of before spinning the application.
+Before you get started, there are several things you need to get hold of before spinning up the application.
 
 **Tech Stack**
 
@@ -33,8 +33,8 @@ Here is a list of the endpoints and operations allowed:
 /logout
     - get
 /blog/<int:blog_id>
-    - post
     - get
+    - put
     - delete
 /blogposts
     - post
@@ -44,11 +44,11 @@ Here is a list of the endpoints and operations allowed:
 
 **Authentication**
 
-with regards to authentication, token based authentication is implemented with cookies being the JWT token location
-
-To run just the flask app, navigate to the backend directory and open the terminal and do a issue a docker container run command in the terminal to install the dependencies, start the container and run the app. You can also use a virtual environment should you feel like so.
+with regards to authentication, token based authentication is implemented with cookies being the JWT token location. So to access a protected endpoint, make sure to attach a cookie named access_token_cookie with the JWT as value in the cookie header.
 
 ## Running the App
+
+Fork the repository and clone it in your local machine. Navigate into the root folder and open a terminal there and run the following command.
 
 ```
 docker compose up
@@ -57,7 +57,7 @@ docker compose up
 
 ## Running Tests
 
-To run tests using pytest, run the app in detached mode then open an interactive terminal in the flask api container and run pytest
+To run tests using pytest, run the app in detached mode, then open an interactive terminal in the flask api container and run pytest
 
 ```
 docker compose -f docker-compose.test.yml up --build -d
