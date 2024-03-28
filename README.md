@@ -46,7 +46,7 @@ Here is a list of the endpoints and operations allowed:
 
 with regards to authentication, token based authentication is implemented with cookies being the JWT token location. So to access a protected endpoint, make sure to attach a cookie named access_token_cookie with the JWT as value in the cookie header.
 
-## Running the App
+**Running the App**
 
 Fork the repository and clone it in your local machine. Navigate into the root folder and open a terminal there and run the following command.
 
@@ -55,7 +55,7 @@ docker compose up
 
 ```
 
-## Running Tests
+**Running Tests**
 
 To run tests using pytest, run the app in detached mode, then open an interactive terminal in the flask api container and run pytest
 

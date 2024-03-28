@@ -7,11 +7,11 @@ info:
   version: 1.0.0
 
 servers:
-  - url: http://127.0.0.1:5000
-  
+  - url: /
+
 components:
   securitySchemes:
-    bearerAuth:            
+    bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
@@ -24,7 +24,7 @@ paths:
         required: true
         content:
           application/json:
-            schema: 
+            schema:
               type: object
               properties:
                 username:
@@ -34,7 +34,7 @@ paths:
                   type: string
                   example: "kinyua-1923"
       responses:
-        '201':
+        "201":
           description: created
           content:
             application/json:
@@ -44,7 +44,7 @@ paths:
                   status:
                     type: string
                     example: User Account Kinyua created successfully
-      
+
   /login:
     description: User Authentication Resource
     post:
@@ -53,7 +53,7 @@ paths:
         required: true
         content:
           application/json:
-            schema: 
+            schema:
               type: object
               properties:
                 username:
@@ -63,7 +63,7 @@ paths:
                   type: string
                   example: "5634yusef-1923"
       responses:
-        '200':
+        "200":
           description: ok
           content:
             application/json:
@@ -76,7 +76,7 @@ paths:
                   token:
                     type: string
                     example: arandomstringhvcyscjcgygcschvsdhcscjs
-  
+
   /logout:
     description: User session termination Resource
     get:
@@ -84,7 +84,7 @@ paths:
       security:
         - bearerAuth: []
       responses:
-        '200':
+        "200":
           description: ok
           content:
             application/json:
@@ -94,8 +94,7 @@ paths:
                   status:
                     type: string
                     example: logged out successfully
-                  
-  
+
   /blog/{id}:
     description: Blog post altering Resource
     get:
@@ -109,74 +108,74 @@ paths:
             minimum: 1
           description: The blog ID
       responses:
-          '200':
-            description: ok
+        "200":
+          description: ok
     put:
       description: Specific Blogpost Update operation
       security:
         - bearerAuth: []
       parameters:
-          - in: path
-            name: id
-            required: true
-            schema:
-              type: integer
-              minimum: 1
-            description: The blog ID
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: The blog ID
       requestBody:
         required: true
         content:
           application/json:
-            schema: 
+            schema:
               type: object
               properties:
                 content:
                   type: string
                   example: an update to some blog content
       responses:
-            '200':
-              description: ok
-              content:
-                application/json:
-                  schema:
-                    type: object
-                    properties:
-                      title:
-                        type: string
-                        example: The blog title
-                      content:
-                        type: string
-                        example: an update to some blog post
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  title:
+                    type: string
+                    example: The blog title
+                  content:
+                    type: string
+                    example: an update to some blog post
     delete:
       description: Specific Blogpost Delete operation
       security:
         - bearerAuth: []
       parameters:
-          - in: path
-            name: id
-            required: true
-            schema:
-              type: integer
-              minimum: 1
-            description: The blog ID
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: The blog ID
       responses:
-            '200':
-              description: ok
-              content:
-                application/json:
-                  schema:
-                    type: object
-                    properties:
-                      status:
-                        type: string
-                        example: blog post deleted successfully
-  
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: blog post deleted successfully
+
   /blogposts:
     description: Blog addition and access Resource
     get:
       description: Blogposts fetch operation
       responses:
-        '200':
+        "200":
           description: ok
           content:
             application/json:
@@ -204,7 +203,7 @@ paths:
         required: true
         content:
           application/json:
-            schema: 
+            schema:
               type: array
               items:
                 properties:
@@ -215,6 +214,5 @@ paths:
                     type: string
                     example: "Some blog content"
       responses:
-        '200':
+        "200":
           description: ok
-    
