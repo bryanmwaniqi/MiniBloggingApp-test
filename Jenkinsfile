@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
+                sh 'docker exec -it test1api pytest'
             }
         }
         stage('Deploy') {
