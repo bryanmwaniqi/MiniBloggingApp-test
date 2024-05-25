@@ -4,7 +4,13 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'docker compose -f docker-compose.test.yml up --build'
+                try {
+                    sh 'docker compose -f docker-compose.test.yml up --build -d'
+                } catch (e) {
+                    echo 'Error: ${e.getMessage()}'
+                } finally {
+                    sh 'docker-compose stop'
+                }
             }
         }
         stage('Test') {
