@@ -4,13 +4,19 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'docker run python:3.6-alpine'
-                echo 'testcomplete'
+                sh '''
+                    docker info
+                    docker version
+                    docker compose version
+                    curl --version
+                  '''
+                // sh 'docker exec -it test1api pytest'
             }
         }
         stage('Test') {
             steps {
-                echo 'success'
+                // sh 'docker exec -it test1api pytest'
+                echo 'testcomplete'
             }
         }
         stage('Deploy') {
