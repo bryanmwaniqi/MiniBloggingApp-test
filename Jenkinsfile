@@ -5,17 +5,15 @@ pipeline {
         stage('Build') {
             steps {
                 sh '''
-                    docker info
                     docker version
                     docker compose version
-                    curl --version
+                    docker compose -f docker-compose.test.yml up --build -d
                   '''
-                // sh 'docker exec -it test1api pytest'
             }
         }
         stage('Test') {
             steps {
-                // sh 'docker exec -it test1api pytest'
+                sh 'docker exec -it test1api pytest'
                 echo 'testcomplete'
             }
         }
@@ -23,6 +21,11 @@ pipeline {
             steps {
                 echo 'Deploying....'
             }
+        }
+    }
+    post {
+        always {
+            sh 'docker compose down'
         }
     }
 }
