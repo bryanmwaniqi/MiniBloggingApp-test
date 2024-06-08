@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'docker exec -it test1api pytest'
+                sh 'docker exec -t test1api pytest'
                 echo 'testcomplete'
             }
         }
@@ -25,7 +25,7 @@ pipeline {
     }
     post {
         always {
-            sh 'docker compose down'
+            sh 'docker compose down -v'
         }
     }
 }
