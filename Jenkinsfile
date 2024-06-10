@@ -4,19 +4,34 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'docker run python:3.6-alpine'
-                echo 'testcomplete'
+                sh '''
+                    docker version
+                    docker compose version
+                    docker compose -f docker-compose.test.yml up --build -d
+                  '''
             }
         }
         stage('Test') {
             steps {
-                echo 'success'
+                sh 'docker exec -t test1api pytest'
+                echo 'testcomplete'
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
             }
+        }
+    }
+    post {
+        always {
+            sh 'docker compose down -v'
+        }
+    }
+}
+    post {
+        always {
+            sh 'docker compose down -v'
         }
     }
 }
