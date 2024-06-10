@@ -1,5 +1,7 @@
 # MiniBloggingApp-test
 
+[![Build Status](http://localhost:8080/buildStatus/icon?job=miniblog)](http://localhost:8080/job/miniblog/)
+
 **Version 1.0.0**
 
 A dockerized mini blogging flask api application that allows you to create,access, update and delete blogposts.
